@@ -1,5 +1,6 @@
 using Konek.Server.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Konek.Server.Core;
 
@@ -22,4 +23,21 @@ class DeviceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Data Source={CommonPaths.Database}");
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+    {
+        builder.Properties<TimeOnly>()
+            .HaveConversion<TimeOnlyConverter>()
+            .HaveColumnType("time");
+    }
+}
+
+public class TimeOnlyConverter : ValueConverter<TimeOnly, TimeSpan>
+{
+    public TimeOnlyConverter() : base(
+        timeOnly => timeOnly.ToTimeSpan(),
+        timeSpan => TimeOnly.FromTimeSpan(timeSpan)
+    )
+    {
+    }
 }

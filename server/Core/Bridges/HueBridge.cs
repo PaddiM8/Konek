@@ -26,8 +26,15 @@ class HueBridge : IBridge
         RemoteLamps = remoteLamps;
     }
 
-    public static async Task<HueBridge?> InitializeAsync(string key)
+    public static async Task<HueBridge?> InitializeAsync()
     {
+        if (!Directory.Exists(CommonPaths.DataFolder))
+            Directory.CreateDirectory(CommonPaths.DataFolder);
+
+        if (!File.Exists(CommonPaths.AppKey))
+            return null;
+
+        string key = await File.ReadAllTextAsync(CommonPaths.AppKey);
         var locator = new HttpBridgeLocator();
         var bridge  = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5))).First();
         var client = new LocalHueClient(bridge.IpAddress);

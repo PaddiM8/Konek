@@ -28,7 +28,7 @@ public class DeviceHub
         RoutineDefinitions = routineDefinitionRepository;
     }
 
-    private static async Task<DeviceHub> CreateAsync(IBridge bridge)
+    public static async Task<DeviceHub> CreateAsync(IBridge bridge)
     {
         var lampRepository = await LampRepository.CreateAsync(bridge);
         var groupRepository = await GroupRepository.CreateAsync(bridge);
@@ -39,28 +39,5 @@ public class DeviceHub
             groupRepository,
             new RoutineDefinitionRepository()
         );
-    }
-
-    public static async Task<DeviceHub?> Initialize()
-    {
-        if (!Directory.Exists(CommonPaths.DataFolder))
-            Directory.CreateDirectory(CommonPaths.DataFolder);
-
-        HueBridge? bridge = null;
-        if (File.Exists(CommonPaths.AppKey))
-            bridge = await HueBridge.InitializeAsync(await File.ReadAllTextAsync(CommonPaths.AppKey));
-
-        return bridge == null
-            ? null
-            : await CreateAsync(bridge);
-    }
-
-    public static async Task<DeviceHub?> RegisterHueAsync()
-    {
-        var bridge = await HueBridge.RegisterAsync();
-
-        return bridge == null
-            ? null
-            : await CreateAsync(bridge);
     }
 }
