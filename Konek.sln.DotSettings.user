@@ -1,0 +1,14 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2a9a37f5_002Dfbd7_002D40cd_002Daa06_002D5807460eec3e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from RoutineManagerTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;ProjectFile&gt;D79EC618-D9DF-4519-B8C4-F62942511143/f:RoutineManagerTests.cs&lt;/ProjectFile&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b56e45b2_002Da9e8_002D424e_002Da2c4_002D1288f86988a4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;And&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;NUnit3x::D79EC618-D9DF-4519-B8C4-F62942511143::net6.0::Konek.Server.Tests.RoutineManagerTests.Schedule_EffectsBetweenTwoDays&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+    &lt;Project Location="/home/paddi/projects/konek/server/Tests" Presentation="&amp;lt;server&amp;gt;\&amp;lt;Konek.Server.Tests&amp;gt;" /&gt;
+    &lt;Namespace&gt;Konek.Server.Tests&lt;/Namespace&gt;
+    &lt;ProjectFile&gt;D79EC618-D9DF-4519-B8C4-F62942511143/f:RoutineManagerTests.cs&lt;/ProjectFile&gt;
+  &lt;/And&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
