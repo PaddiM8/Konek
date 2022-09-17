@@ -8,25 +8,21 @@ namespace Konek.Server.Core.Repositories;
 public class GroupRepository : IRepository<Group>
 {
     private readonly IBridge _bridge;
-    private readonly RoutineManagerBag _routineManagers;
+    private readonly RoutineManagerBag _routineManagers = new();
 
-    private GroupRepository(IBridge bridge, RoutineManagerBag routineManagers)
+    internal GroupRepository(IBridge bridge)
     {
         _bridge = bridge;
-        _routineManagers = routineManagers;
     }
 
-    internal static async Task<GroupRepository> CreateAsync(IBridge bridge)
+    public async Task Load()
     {
-        var routineManagers = new RoutineManagerBag();
-        var repository = new GroupRepository(bridge, routineManagers);
-        foreach (var group in await repository.GetAllWithRoutinesAsync())
+        foreach (var group in await GetAllWithRoutinesAsync())
         {
-            routineManagers.CreateManager(group.GroupId, group, bridge);
+            _routineManagers.CreateManager(group.GroupId, group, _bridge);
         }
-
-        return repository;
     }
+
 
     public async Task AddAsync(Group group)
     {

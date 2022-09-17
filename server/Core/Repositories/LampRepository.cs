@@ -8,24 +8,19 @@ namespace Konek.Server.Core.Repositories;
 public class LampRepository : IRepository<Lamp>
 {
     private readonly IBridge _bridge;
-    private readonly RoutineManagerBag _routineManagers;
+    private readonly RoutineManagerBag _routineManagers = new();
 
-    private LampRepository(IBridge bridge, RoutineManagerBag routineManagers)
+    internal LampRepository(IBridge bridge)
     {
         _bridge = bridge;
-        _routineManagers = routineManagers;
     }
 
-    internal static async Task<LampRepository> CreateAsync(IBridge bridge)
+    public async Task Load()
     {
-        var routineManagers = new RoutineManagerBag();
-        var repository = new LampRepository(bridge, routineManagers);
-        foreach (var lamp in await repository.GetAllWithRoutinesAsync())
+        foreach (var lamp in await GetAllWithRoutinesAsync())
         {
-            routineManagers.CreateManager(lamp.LampId, lamp, bridge);
+            _routineManagers.CreateManager(lamp.LampId, lamp, _bridge);
         }
-
-        return repository;
     }
 
     public async Task AddAsync(Lamp lamp)

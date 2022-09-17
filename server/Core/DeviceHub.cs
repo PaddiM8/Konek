@@ -17,27 +17,18 @@ public class DeviceHub
 
     private readonly IBridge _bridge;
 
-    private DeviceHub(IBridge bridge,
-        LampRepository lampRepository,
-        GroupRepository groupRepository,
-        RoutineDefinitionRepository routineDefinitionRepository)
+    public DeviceHub(IBridge bridge)
     {
         _bridge = bridge;
-        Lamps = lampRepository;
-        Groups = groupRepository;
-        RoutineDefinitions = routineDefinitionRepository;
+        Lamps = new LampRepository(bridge);
+        Groups = new GroupRepository(bridge);
+        RoutineDefinitions = new RoutineDefinitionRepository();
     }
 
-    public static async Task<DeviceHub> CreateAsync(IBridge bridge)
-    {
-        var lampRepository = await LampRepository.CreateAsync(bridge);
-        var groupRepository = await GroupRepository.CreateAsync(bridge);
 
-        return new DeviceHub(
-            bridge,
-            lampRepository,
-            groupRepository,
-            new RoutineDefinitionRepository()
-        );
+    public async Task Load()
+    {
+        await Lamps.Load();
+        await Groups.Load();
     }
 }
