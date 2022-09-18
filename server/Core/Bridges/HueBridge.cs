@@ -5,7 +5,7 @@ using Q42.HueApi;
 
 namespace Konek.Server.Core.Bridges;
 
-class HueBridge : IBridge
+public class HueBridge : IBridge
 {
     public IEnumerable<RemoteLamp> RemoteLamps { get; }
 

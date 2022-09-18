@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konek.Server.Core", "server
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konek.Server.Tests", "server\Tests\Konek.Server.Tests.csproj", "{D79EC618-D9DF-4519-B8C4-F62942511143}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konek.Server.Web", "server\Web\Konek.Server.Web.csproj", "{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}"
+EndProject
 Global
 	GlobalSection(NestedProjects) = preSolution
 		{70A118F5-5076-425E-A5FF-5A6E7B924A49} = {7FFB320B-ACCE-4EB4-A50B-D9C808DAD257}
 		{D79EC618-D9DF-4519-B8C4-F62942511143} = {7FFB320B-ACCE-4EB4-A50B-D9C808DAD257}
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2} = {7FFB320B-ACCE-4EB4-A50B-D9C808DAD257}
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,5 +48,17 @@ Global
 		{D79EC618-D9DF-4519-B8C4-F62942511143}.Release|x64.Build.0 = Release|Any CPU
 		{D79EC618-D9DF-4519-B8C4-F62942511143}.Release|x86.ActiveCfg = Release|Any CPU
 		{D79EC618-D9DF-4519-B8C4-F62942511143}.Release|x86.Build.0 = Release|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Release|x64.Build.0 = Release|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC32F9E8-65CD-4B1E-83F0-78BD25C759E2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

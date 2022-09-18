@@ -117,8 +117,8 @@ public class RoutineManagerTests
             new(new TimeOnly(2, 30), new TimeOnly(3, 35), 36, 41) { EffectId = 2 },
             new(new TimeOnly(3, 35), new TimeOnly(5, 20), 46, 51) { EffectId = 3 },
         });
-        var routine1 = new Routine(routineDefinition1, null, 0);
-        var routine2 = new Routine(routineDefinition2, null, 1);
+        var routine1 = new Routine(routineDefinition1, null);
+        var routine2 = new Routine(routineDefinition2, null);
 
         var brightnessArgs = new List<byte>();
         var temperatureArgs = new List<byte>();

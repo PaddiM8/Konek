@@ -31,12 +31,13 @@ public class LampRepository : IRepository<Lamp>
         _routineManagers.CreateManager(lamp.LampId, lamp, _bridge);
     }
 
-    public async Task AddRoutine(int lampId, Routine routine)
+    public async Task AddRoutineAsync(int lampId, Routine routine)
     {
         await using var db = new DeviceContext();
         var lamp = await db.Lamps.FindAsync(lampId);
         if (lamp != null)
         {
+            routine.Priority = lamp.Routines.Count;
             lamp.Routines.Add(routine);
             await db.SaveChangesAsync();
         }

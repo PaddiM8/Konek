@@ -10,21 +10,18 @@ public class Routine
 
     public RoutineDefinition Definition { get; init; } = null!;
 
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Priority { get; init; }
+    public int Priority { get; set; }
 
     public DateTime? Expiry { get; init; }
 
-    public Routine(RoutineDefinition definition, DateTime? expiry, int priority = 0)
+    public Routine(RoutineDefinition definition, DateTime? expiry)
     {
         Definition = definition;
         Expiry = expiry;
-        Priority = priority;
     }
 
-    public Routine(DateTime? expiry, int priority = 0)
+    public Routine(DateTime? expiry)
     {
         Expiry = expiry;
-        Priority = priority;
     }
 }

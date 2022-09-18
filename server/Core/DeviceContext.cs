@@ -22,7 +22,12 @@ class DeviceContext : DbContext
         => Set<Effect>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={CommonPaths.Database}");
+    {
+        if (!Directory.Exists(CommonPaths.DataFolder))
+            Directory.CreateDirectory(CommonPaths.DataFolder);
+
+        options.UseSqlite($"Data Source={CommonPaths.Database}");
+    }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder builder)
     {
