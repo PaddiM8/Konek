@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Konek.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Konek.Desktop.Views"
+        xmlns:models="clr-namespace:Konek.Desktop.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Konek.Desktop.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Konek.Desktop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <StyleInclude Source="/Views/Sidebar.axaml"/>
+    </Window.Styles>
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="models:Group">
+            <RadioButton Classes="item"
+                         GroupName="MenuItems"
+                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
+                                           Path=DataContext.SelectGroup}"
+                         CommandParameter="{Binding}">
+                <TextBlock Text="{Binding Name}"/>
+            </RadioButton>
+        </DataTemplate>
+        <DataTemplate DataType="models:Lamp">
+            <RadioButton Classes="item"
+                         GroupName="MenuItems"
+                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
+                                           Path=DataContext.SelectLamp}"
+                         CommandParameter="{Binding}"
+                         Content="{Binding Name}"/>
+        </DataTemplate>
+        <DataTemplate DataType="models:RoutineDefinition">
+            <RadioButton Classes="item"
+                         GroupName="MenuItems"
+                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
+                                           Path=DataContext.SelectRoutine}"
+                         CommandParameter="{Binding}"
+                         Content="{Binding RoutineDefinitionId}"/>
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <DockPanel>
+        <Border BorderBrush="#D3D3D3"
+                BorderThickness="0 0 1 0">
+            <StackPanel Classes="sidebar" Width="200">
+                <TextBlock>Groups</TextBlock>
+                <ItemsControl Items="{Binding Groups}"
+                              Classes="navigationGroup"/>
+                <TextBlock>Lamps</TextBlock>
+                <ItemsControl Items="{Binding Lamps}"
+                              Classes="navigationGroup"/>
+                <TextBlock>Routines</TextBlock>
+                <ItemsControl Items="{Binding Routines}"
+                              Classes="navigationGroup"/>
+            </StackPanel>
+        </Border>
+        <Carousel SelectedIndex="{Binding SelectedView}">
+            <views:LightControlView DataContext="{Binding LightControlViewModel}"/>
+            <views:RoutineView DataContext="{Binding RoutineDefinitionViewModel}"/>
+        </Carousel>
+    </DockPanel>
+
+</Window>

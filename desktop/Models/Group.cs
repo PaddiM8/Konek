@@ -1,16 +1,14 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
-namespace Konek.Server.Core.Models;
+namespace Konek.Desktop.Models;
 
-public class Group : IEffectBearer
+public class Group
 {
-    [Key]
     public int GroupId { get; init; } = 0;
 
     public string Name { get; init; }
 
-    public int Priority { get; init; }
+    public int Priority { get; init; } = 0;
 
     public ICollection<Lamp> Lamps { get; init; } = new List<Lamp>();
 

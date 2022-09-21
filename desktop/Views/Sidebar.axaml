@@ -1,0 +1,80 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border BorderBrush="Gray"
+                BorderThickness="0 0 2 0">
+            <StackPanel Classes="sidebar" Width="150">
+                <TextBlock>Groups</TextBlock>
+                <ItemsControl Classes="navigationGroup">
+                    <RadioButton Classes="item"
+                                 GroupName="MenuItems"
+                                 Content="Group 1"/>
+                </ItemsControl>
+                <TextBlock>Lamps</TextBlock>
+                <ItemsControl Classes="navigationGroup">
+                    <RadioButton Classes="item"
+                                 GroupName="MenuItems"
+                                 Content="Lamp 1"/>
+                    <RadioButton Classes="item"
+                                 GroupName="MenuItems"
+                                 Content="Lamp 2"/>
+                    <RadioButton Classes="item"
+                                 GroupName="MenuItems"
+                                 Content="Lamp 3"/>
+                </ItemsControl>
+                <TextBlock>Routines</TextBlock>
+                <ItemsControl Classes="navigationGroup">
+                    <RadioButton Classes="item"
+                                 GroupName="MenuItems"
+                                 Content="Routine 1"/>
+                    <RadioButton Classes="item"
+                                 GroupName="MenuItems"
+                                 Content="Routine 2"/>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="RadioButton">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="StackPanel.sidebar > TextBlock">
+        <Setter Property="Margin" Value="8 8 0 0"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="Gray"/>
+    </Style>
+
+    <Style Selector="ItemsControl.navigationGroup">
+        <Setter Property="Margin" Value="0 5 0 5"/>
+        <Setter Property="BorderBrush" Value="#D3D3D3"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+    </Style>
+    <Style Selector="ItemsControl.navigationGroup RadioButton.item">
+        <Setter Property="Padding" Value="20 15 15 15"/>
+        <Setter Property="BorderBrush" Value="#D3D3D3"/>
+        <Setter Property="BorderThickness" Value="0 1 0 0"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+    <Style Selector="ItemsControl.navigationGroup RadioButton.item:pointerover">
+        <Setter Property="Background" Value="Cornflowerblue"/>
+    </Style>
+    <Style Selector="ItemsControl.navigationGroup RadioButton.item:checked">
+        <Setter Property="Background" Value="#D3D3D3"/>
+    </Style>
+    <Style Selector="ItemsControl.navigationGroup TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+</Styles>

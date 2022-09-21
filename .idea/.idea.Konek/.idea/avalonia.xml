@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Konek.Desktop/App.axaml" value="Konek.Desktop/Konek.Desktop.csproj" />
+        <entry key="Konek.Desktop/Views/MainWindow.axaml" value="Konek.Desktop/Konek.Desktop.csproj" />
+        <entry key="Konek.Desktop/Views/Sidebar.axaml" value="Konek.Desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/App.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Pages/ControlPage.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Pages/RoutinePage.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Pages/RoutineView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/ControlView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/MainWindow.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Sidebar.axaml" value="desktop/Konek.Desktop.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
