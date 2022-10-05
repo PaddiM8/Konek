@@ -56,7 +56,13 @@ public partial class App : Application
         services.AddHttpClient<IHubClient, HubClient>(client => client.BaseAddress = new Uri(serverUrl))
             .ConfigurePrimaryHttpMessageHandler(CreateHttpClientHandler);
 
+        services.AddHttpClient<IGroupClient, GroupClient>(client => client.BaseAddress = new Uri(serverUrl))
+            .ConfigurePrimaryHttpMessageHandler(CreateHttpClientHandler);
+
         services.AddHttpClient<ILampClient, LampClient>(client => client.BaseAddress = new Uri(serverUrl))
+            .ConfigurePrimaryHttpMessageHandler(CreateHttpClientHandler);
+
+        services.AddHttpClient<IRoutineDefinitionClient, RoutineDefinitionClient>(client => client.BaseAddress = new Uri(serverUrl))
             .ConfigurePrimaryHttpMessageHandler(CreateHttpClientHandler);
 
         return services.BuildServiceProvider();

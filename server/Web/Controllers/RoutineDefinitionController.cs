@@ -6,13 +6,19 @@ namespace Konek.Server.Web.Controllers;
 
 [ApiController]
 [Route("routineDefinitions")]
-public class RoutineDefinitionController
+public class RoutineDefinitionController : ControllerBase
 {
     private readonly DeviceHub _hub;
 
     public RoutineDefinitionController(DeviceHub hub)
     {
         _hub = hub;
+    }
+
+    [HttpGet]
+    public async Task<IEnumerable<RoutineDefinition>> Get()
+    {
+        return await _hub.RoutineDefinitions.GetAllAsync();
     }
 
     [HttpPost]

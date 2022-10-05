@@ -40,12 +40,18 @@ public class MainWindowViewModel : ViewModelBase
 
     public ICommand AddLampCommand { get; }
 
+    private readonly IGroupClient _groupClient;
+
     private readonly ILampClient _lampClient;
+
+    private readonly IRoutineDefinitionClient _routineDefinitionClient;
 
     public MainWindowViewModel(
         LightControlViewModel lightControlViewModel,
         RoutineDefinitionViewModel routineDefinitionViewModel,
+        IGroupClient groupClient,
         ILampClient lampClient,
+        IRoutineDefinitionClient routineDefinitionClient,
         IServiceProvider services
     )
     {
@@ -61,14 +67,25 @@ public class MainWindowViewModel : ViewModelBase
             );
         });
 
+        _groupClient = groupClient;
         _lampClient = lampClient;
+        _routineDefinitionClient = routineDefinitionClient;
 
         RxApp.TaskpoolScheduler.Schedule(Load);
     }
 
     private async void Load()
     {
-        Lamps.AddRange(await _lampClient.GetAsync());
+        try
+        {
+            Groups.AddRange(await _groupClient.GetAsync());
+            Lamps.AddRange(await _lampClient.GetAsync());
+            Routines.AddRange(await _routineDefinitionClient.GetAsync());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
     public void SelectGroup(Group group)
