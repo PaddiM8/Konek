@@ -10,8 +10,11 @@
         <entry key="desktop/Pages/ControlPage.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Pages/RoutinePage.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Pages/RoutineView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/AddEffectWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/AddLampWindow.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/AddRoutineDefinitionWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/ControlView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/LightControlView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/MainWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Sidebar.axaml" value="desktop/Konek.Desktop.csproj" />
       </map>

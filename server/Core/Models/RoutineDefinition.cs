@@ -8,6 +8,8 @@ public class RoutineDefinition
     [Key]
     public int RoutineDefinitionId { get; init; } = 0;
 
+    public string Name { get; init; }
+
     [NotMapped]
     public Effect? CurrentEffect { get; set; }
 
@@ -15,12 +17,14 @@ public class RoutineDefinition
 
     private ICollection<Routine> Routines { get; init; } = new List<Routine>();
 
-    public RoutineDefinition()
+    public RoutineDefinition(string name)
     {
+        Name = name;
     }
 
-    public RoutineDefinition(ICollection<Effect> effects)
+    public RoutineDefinition(string name, ICollection<Effect> effects)
     {
+        Name = name;
         Effects = effects;
     }
 }

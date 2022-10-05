@@ -12,6 +12,7 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     {
         InitializeComponent();
         this.WhenActivated(d => d(ViewModel!.ShowAddLampDialog.RegisterHandler(DoShowAddLampDialogAsync)));
+        this.WhenActivated(d => d(ViewModel!.ShowAddRoutineDefinitionDialog.RegisterHandler(DoShowAddRoutineDefinitionDialogAsync)));
     }
 
     private async Task DoShowAddLampDialogAsync(InteractionContext<AddLampViewModel, Lamp?> interaction)
@@ -22,6 +23,17 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
         };
 
         var result = await dialog.ShowDialog<Lamp?>(this);
+        interaction.SetOutput(result);
+    }
+
+    private async Task DoShowAddRoutineDefinitionDialogAsync(InteractionContext<AddRoutineDefinitionViewModel, RoutineDefinition?> interaction)
+    {
+        var dialog = new AddRoutineDefinitionWindow
+        {
+            DataContext = interaction.Input,
+        };
+
+        var result = await dialog.ShowDialog<RoutineDefinition?>(this);
         interaction.SetOutput(result);
     }
 }

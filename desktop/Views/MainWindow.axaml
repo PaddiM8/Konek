@@ -43,7 +43,7 @@
                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
                                            Path=DataContext.SelectRoutine}"
                          CommandParameter="{Binding}"
-                         Content="{Binding RoutineDefinitionId}"/>
+                         Content="{Binding Name}"/>
         </DataTemplate>
     </Window.DataTemplates>
 
@@ -65,7 +65,7 @@
                               Classes="navigationGroup"/>
                 <StackPanel>
                     <TextBlock>Routines</TextBlock>
-                    <Button>Add</Button>
+                    <Button Command="{Binding AddRoutineCommand}">Add</Button>
                 </StackPanel>
                 <ItemsControl Items="{Binding Routines}"
                               Classes="navigationGroup"/>

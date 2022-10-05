@@ -24,6 +24,8 @@ public class MainWindowViewModel : ViewModelBase
 
     public Interaction<AddLampViewModel, Lamp?> ShowAddLampDialog { get; } = new();
 
+    public Interaction<AddRoutineDefinitionViewModel, RoutineDefinition?> ShowAddRoutineDefinitionDialog { get; } = new();
+
     private int _selectedView;
 
     public int SelectedView
@@ -39,6 +41,8 @@ public class MainWindowViewModel : ViewModelBase
     public ICommand SelectRoutineCommand { get; }
 
     public ICommand AddLampCommand { get; }
+
+    public ICommand AddRoutineCommand { get; }
 
     private readonly IGroupClient _groupClient;
 
@@ -62,9 +66,28 @@ public class MainWindowViewModel : ViewModelBase
         SelectRoutineCommand = ReactiveCommand.Create<Routine>(SelectRoutine);
         AddLampCommand = ReactiveCommand.CreateFromTask(async () =>
         {
-            await ShowAddLampDialog.Handle(
+            var lamp = await ShowAddLampDialog.Handle(
                 ActivatorUtilities.CreateInstance<AddLampViewModel>(services)
             );
+
+            if (lamp != null)
+                Lamps.Add(lamp);
+        });
+        AddRoutineCommand = ReactiveCommand.CreateFromTask(async () =>
+        {
+            try
+            {
+                var routineDefinition = await ShowAddRoutineDefinitionDialog.Handle(
+                    ActivatorUtilities.CreateInstance<AddRoutineDefinitionViewModel>(services)
+                );
+
+                if (routineDefinition != null)
+                    Routines.Add(routineDefinition);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         });
 
         _groupClient = groupClient;

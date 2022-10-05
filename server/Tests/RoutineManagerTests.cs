@@ -39,7 +39,7 @@ public class RoutineManagerTests
     [Test]
     public void Schedule_SingleEffect()
     {
-        var routineDefinition = new RoutineDefinition(new List<Effect>
+        var routineDefinition = new RoutineDefinition("1", new List<Effect>
         {
             new(new TimeOnly(2, 10), new TimeOnly(3, 15), 100, 150) { EffectId = 0 },
         });
@@ -57,7 +57,7 @@ public class RoutineManagerTests
     [Test]
     public void Schedule_TwoEffectsWithGap()
     {
-        var routineDefinition = new RoutineDefinition(new List<Effect>
+        var routineDefinition = new RoutineDefinition("1", new List<Effect>
         {
             new(new TimeOnly(2, 10), new TimeOnly(3, 15), 100, 150) { EffectId = 0 },
             new(new TimeOnly(4, 10), new TimeOnly(5, 15), 200, 250) { EffectId = 1 },
@@ -81,7 +81,7 @@ public class RoutineManagerTests
     [Test]
     public void Schedule_SingleRoutineMultipleEffects()
     {
-        var routineDefinition = new RoutineDefinition(new List<Effect>
+        var routineDefinition = new RoutineDefinition("1", new List<Effect>
         {
             new(new TimeOnly(2, 10), new TimeOnly(3, 15), 25, 30) { EffectId = 0 },
             new(new TimeOnly(3, 15), new TimeOnly(5, 0), 30, 35) { EffectId = 1 },
@@ -107,12 +107,12 @@ public class RoutineManagerTests
     {
         //   |###|###| (routine2)
         // |###|###|   (routine1)
-        var routineDefinition1 = new RoutineDefinition(new List<Effect>
+        var routineDefinition1 = new RoutineDefinition("1", new List<Effect>
         {
             new(new TimeOnly(2, 10), new TimeOnly(3, 15), 25, 30) { EffectId = 0 },
             new(new TimeOnly(3, 15), new TimeOnly(5, 0), 30, 35) { EffectId = 1 },
         });
-        var routineDefinition2 = new RoutineDefinition(new List<Effect>
+        var routineDefinition2 = new RoutineDefinition("1", new List<Effect>
         {
             new(new TimeOnly(2, 30), new TimeOnly(3, 35), 36, 41) { EffectId = 2 },
             new(new TimeOnly(3, 35), new TimeOnly(5, 20), 46, 51) { EffectId = 3 },
@@ -138,7 +138,7 @@ public class RoutineManagerTests
     [Test]
     public void Schedule_EffectsBetweenTwoDays()
     {
-        var routineDefinition = new RoutineDefinition(new List<Effect>
+        var routineDefinition = new RoutineDefinition("1", new List<Effect>
         {
             new(new TimeOnly(21, 50), new TimeOnly(23, 50), 20, 25) { EffectId = 0 },
             new(new TimeOnly(23, 50), new TimeOnly(01, 15), 30, 35) { EffectId = 0 },

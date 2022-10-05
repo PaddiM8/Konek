@@ -20,6 +20,7 @@
         <Style Selector="Window.dialog">
             <Setter Property="Padding" Value="15"/>
             <Setter Property="SizeToContent" Value="Height"/>
+            <Setter Property="WindowStartupLocation" Value="CenterOwner"/>
         </Style>
     </Application.Styles>
 </Application>

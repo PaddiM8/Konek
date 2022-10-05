@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Konek.Desktop.Views.AddEffectWindow"
+        Classes="dialog"
+        Title="AddEffectWindow">
+
+        <Design.DataContext>
+            <viewModels:AddEffectViewModel/>
+        </Design.DataContext>
+
+        <StackPanel>
+                <TextBlock Classes="h1"
+                           Text="New Effect"/>
+                <TextBlock Classes="h2"
+                           Text="Start Time"/>
+                <TextBox Text="{Binding StartTime}"
+                         Watermark="12:34"/>
+                <TextBlock Classes="h2"
+                           Text="End Time"/>
+                <TextBox Text="{Binding EndTime}"
+                         Watermark="12:34"/>
+                <TextBlock Classes="h2"
+                           Text="Brightness"/>
+                <TextBox Text="{Binding Brightness}"
+                         Watermark="255" />
+                <TextBlock Classes="h2"
+                           Text="Temperature"/>
+                <TextBox Text="{Binding Temperature}"
+                         Watermark="255" />
+                <Button Content="Cancel"
+                        Click="Cancel_Click"/>
+                <Button Content="Add"
+                        Command="{Binding SubmitCommand}"/>
+        </StackPanel>
+</Window>
