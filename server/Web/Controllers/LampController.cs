@@ -22,20 +22,24 @@ public class LampController : ControllerBase
     }
 
     [HttpPost]
-    public async Task Add(string name, string remoteId)
+    public async Task<ActionResult<Lamp>> Add(string name, string remoteId)
     {
-        await _hub.Lamps.AddAsync(new Lamp(name, remoteId));
+        var lamp = new Lamp(name, remoteId);
+        await _hub.Lamps.AddAsync(lamp);
+
+        return lamp;
     }
 
     [HttpPost("{lampId}/routines")]
-    public async Task<IActionResult> AddRoutine(int lampId, int routineId)
+    public async Task<ActionResult<Routine>> AddRoutine(int lampId, int routineId)
     {
         var routineDefinition = await _hub.RoutineDefinitions.GetAsync(routineId);
         if (routineDefinition == null)
             return NotFound();
 
-        await _hub.Lamps.AddRoutineAsync(lampId, new Routine(routineDefinition, null));
+        var routine = new Routine(routineDefinition, null);
+        await _hub.Lamps.AddRoutineAsync(lampId, routine);
 
-        return Ok();
+        return routine;
     }
 }

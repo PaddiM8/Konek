@@ -1,3 +1,5 @@
+using System;
+using Konek.Client;
 using ReactiveUI;
 
 namespace Konek.Desktop.ViewModels;
@@ -9,5 +11,9 @@ public class LightControlViewModel : ViewModelBase
     {
         get => _name;
         set => this.RaiseAndSetIfChanged(ref _name, value);
+    }
+
+    public LightControlViewModel(ILampClient lamps)
+    {
     }
 }

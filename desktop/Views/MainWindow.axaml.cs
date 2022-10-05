@@ -1,11 +1,27 @@
-using Avalonia.Controls;
+using System.Threading.Tasks;
+using Avalonia.ReactiveUI;
+using Konek.Client;
+using Konek.Desktop.ViewModels;
+using ReactiveUI;
 
 namespace Konek.Desktop.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
     public MainWindow()
     {
         InitializeComponent();
+        this.WhenActivated(d => d(ViewModel!.ShowAddLampDialog.RegisterHandler(DoShowAddLampDialogAsync)));
+    }
+
+    private async Task DoShowAddLampDialogAsync(InteractionContext<AddLampViewModel, Lamp?> interaction)
+    {
+        var dialog = new AddLampWindow
+        {
+            DataContext = interaction.Input,
+        };
+
+        var result = await dialog.ShowDialog<Lamp?>(this);
+        interaction.SetOutput(result);
     }
 }

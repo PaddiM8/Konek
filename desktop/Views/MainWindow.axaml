@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Konek.Desktop.Views"
-        xmlns:models="clr-namespace:Konek.Desktop.Models"
+        xmlns:models="clr-namespace:Konek.Client"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Konek.Desktop.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Konek.Desktop">
+        Title="Konek.Desktop"
+        WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
@@ -50,13 +51,22 @@
         <Border BorderBrush="#D3D3D3"
                 BorderThickness="0 0 1 0">
             <StackPanel Classes="sidebar" Width="200">
-                <TextBlock>Groups</TextBlock>
+                <StackPanel>
+                    <TextBlock>Groups</TextBlock>
+                    <Button>Add</Button>
+                </StackPanel>
                 <ItemsControl Items="{Binding Groups}"
                               Classes="navigationGroup"/>
-                <TextBlock>Lamps</TextBlock>
+                <StackPanel>
+                    <TextBlock>Lamps</TextBlock>
+                    <Button Command="{Binding AddLampCommand}">Add</Button>
+                </StackPanel>
                 <ItemsControl Items="{Binding Lamps}"
                               Classes="navigationGroup"/>
-                <TextBlock>Routines</TextBlock>
+                <StackPanel>
+                    <TextBlock>Routines</TextBlock>
+                    <Button>Add</Button>
+                </StackPanel>
                 <ItemsControl Items="{Binding Routines}"
                               Classes="navigationGroup"/>
             </StackPanel>

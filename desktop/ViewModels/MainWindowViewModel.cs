@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using System.Windows.Input;
-using Konek.Desktop.Models;
+using DynamicData;
+using Konek.Client;
+using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 
 namespace Konek.Desktop.ViewModels;
@@ -12,11 +16,13 @@ public class MainWindowViewModel : ViewModelBase
 
     public RoutineDefinitionViewModel RoutineDefinitionViewModel { get; }
 
-    public ObservableCollection<Group> Groups { get; } = new() { new("Group #1"), new("Group #2") };
+    public ObservableCollection<Group> Groups { get; } = new();
 
-    public ObservableCollection<Lamp> Lamps { get; } = new() { new("Lamp #1", "1"), new("Lamp #2", "1") };
+    public ObservableCollection<Lamp> Lamps { get; } = new();
 
-    public ObservableCollection<RoutineDefinition> Routines { get; } = new() { new(new List<Effect>()), new(new List<Effect>()) };
+    public ObservableCollection<RoutineDefinition> Routines { get; } = new();
+
+    public Interaction<AddLampViewModel, Lamp?> ShowAddLampDialog { get; } = new();
 
     private int _selectedView;
 
@@ -32,13 +38,37 @@ public class MainWindowViewModel : ViewModelBase
 
     public ICommand SelectRoutineCommand { get; }
 
-    public MainWindowViewModel(LightControlViewModel lightControlViewModel, RoutineDefinitionViewModel routineDefinitionViewModel)
+    public ICommand AddLampCommand { get; }
+
+    private readonly ILampClient _lampClient;
+
+    public MainWindowViewModel(
+        LightControlViewModel lightControlViewModel,
+        RoutineDefinitionViewModel routineDefinitionViewModel,
+        ILampClient lampClient,
+        IServiceProvider services
+    )
     {
         LightControlViewModel = lightControlViewModel;
         RoutineDefinitionViewModel = routineDefinitionViewModel;
         SelectGroupCommand = ReactiveCommand.Create<Group>(SelectGroup);
         SelectLampCommand = ReactiveCommand.Create<Lamp>(SelectLamp);
         SelectRoutineCommand = ReactiveCommand.Create<Routine>(SelectRoutine);
+        AddLampCommand = ReactiveCommand.CreateFromTask(async () =>
+        {
+            await ShowAddLampDialog.Handle(
+                ActivatorUtilities.CreateInstance<AddLampViewModel>(services)
+            );
+        });
+
+        _lampClient = lampClient;
+
+        RxApp.TaskpoolScheduler.Schedule(Load);
+    }
+
+    private async void Load()
+    {
+        Lamps.AddRange(await _lampClient.GetAsync());
     }
 
     public void SelectGroup(Group group)
@@ -49,6 +79,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public void SelectLamp(Lamp lamp)
     {
+        LightControlViewModel.Name = lamp.Name;
         SelectedView = 0;
     }
 

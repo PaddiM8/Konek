@@ -16,8 +16,11 @@ public class RoutineDefinitionController
     }
 
     [HttpPost]
-    public async Task Add(ICollection<Effect> effects)
+    public async Task<ActionResult<RoutineDefinition>> Add(ICollection<Effect> effects)
     {
-        await _hub.RoutineDefinitions.AddAsync(new RoutineDefinition(effects));
+        var routineDefinition = new RoutineDefinition(effects);
+        await _hub.RoutineDefinitions.AddAsync(routineDefinition);
+
+        return routineDefinition;
     }
 }

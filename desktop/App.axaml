@@ -8,5 +8,18 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style Selector="TextBlock.h3">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style Selector="Window.dialog">
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="SizeToContent" Value="Height"/>
+        </Style>
     </Application.Styles>
 </Application>
