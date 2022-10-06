@@ -12,7 +12,13 @@ namespace Konek.Desktop.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public LightControlViewModel LightControlViewModel { get; }
+    private LightControlViewModel _lightControlViewModel = null!;
+
+    public LightControlViewModel LightControlViewModel
+    {
+        get => _lightControlViewModel;
+        set => this.RaiseAndSetIfChanged(ref _lightControlViewModel, value);
+    }
 
     public RoutineDefinitionViewModel RoutineDefinitionViewModel { get; }
 
@@ -44,6 +50,8 @@ public class MainWindowViewModel : ViewModelBase
 
     public ICommand AddRoutineCommand { get; }
 
+    private readonly IServiceProvider _services;
+
     private readonly IGroupClient _groupClient;
 
     private readonly ILampClient _lampClient;
@@ -51,7 +59,6 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IRoutineDefinitionClient _routineDefinitionClient;
 
     public MainWindowViewModel(
-        LightControlViewModel lightControlViewModel,
         RoutineDefinitionViewModel routineDefinitionViewModel,
         IGroupClient groupClient,
         ILampClient lampClient,
@@ -59,7 +66,6 @@ public class MainWindowViewModel : ViewModelBase
         IServiceProvider services
     )
     {
-        LightControlViewModel = lightControlViewModel;
         RoutineDefinitionViewModel = routineDefinitionViewModel;
         SelectGroupCommand = ReactiveCommand.Create<Group>(SelectGroup);
         SelectLampCommand = ReactiveCommand.Create<Lamp>(SelectLamp);
@@ -75,21 +81,15 @@ public class MainWindowViewModel : ViewModelBase
         });
         AddRoutineCommand = ReactiveCommand.CreateFromTask(async () =>
         {
-            try
-            {
-                var routineDefinition = await ShowAddRoutineDefinitionDialog.Handle(
-                    ActivatorUtilities.CreateInstance<AddRoutineDefinitionViewModel>(services)
-                );
+            var routineDefinition = await ShowAddRoutineDefinitionDialog.Handle(
+                ActivatorUtilities.CreateInstance<AddRoutineDefinitionViewModel>(services)
+            );
 
-                if (routineDefinition != null)
-                    Routines.Add(routineDefinition);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            if (routineDefinition != null)
+                Routines.Add(routineDefinition);
         });
 
+        _services = services;
         _groupClient = groupClient;
         _lampClient = lampClient;
         _routineDefinitionClient = routineDefinitionClient;
@@ -101,9 +101,9 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            Groups.AddRange(await _groupClient.GetAsync());
-            Lamps.AddRange(await _lampClient.GetAsync());
-            Routines.AddRange(await _routineDefinitionClient.GetAsync());
+            Groups.AddRange(await _groupClient.GetAllAsync());
+            Lamps.AddRange(await _lampClient.GetAllAsync());
+            Routines.AddRange(await _routineDefinitionClient.GetAllAsync());
         }
         catch (Exception ex)
         {
@@ -113,13 +113,13 @@ public class MainWindowViewModel : ViewModelBase
 
     public void SelectGroup(Group group)
     {
-        LightControlViewModel.Name = group.Name;
+        LightControlViewModel = ActivatorUtilities.CreateInstance<LightControlViewModel>(_services, group.GroupId, group.Name);
         SelectedView = 0;
     }
 
     public void SelectLamp(Lamp lamp)
     {
-        LightControlViewModel.Name = lamp.Name;
+        LightControlViewModel = ActivatorUtilities.CreateInstance<LightControlViewModel>(_services, lamp.LampId, lamp.Name);
         SelectedView = 0;
     }
 

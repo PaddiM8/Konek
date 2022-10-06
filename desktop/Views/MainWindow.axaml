@@ -71,7 +71,8 @@
                               Classes="navigationGroup"/>
             </StackPanel>
         </Border>
-        <Carousel SelectedIndex="{Binding SelectedView}">
+        <Carousel SelectedIndex="{Binding SelectedView}"
+                  Padding="25">
             <views:LightControlView DataContext="{Binding LightControlViewModel}"/>
             <views:RoutineView DataContext="{Binding RoutineDefinitionViewModel}"/>
         </Carousel>

@@ -16,9 +16,15 @@ public class LampController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Lamp>> Get()
+    public async Task<IEnumerable<Lamp>> GetAll()
     {
-        return await _hub.Lamps.GetAllWithRoutinesAsync();
+        return await _hub.Lamps.GetAllAsync();
+    }
+
+    [HttpGet("/{lampId:int}")]
+    public async Task<Lamp?> Get(int lampId)
+    {
+        return await _hub.Lamps.GetAsync(lampId);
     }
 
     [HttpPost]
@@ -30,7 +36,7 @@ public class LampController : ControllerBase
         return lamp;
     }
 
-    [HttpPost("{lampId}/routines")]
+    [HttpPost("{lampId:int}/routines")]
     public async Task<ActionResult<Routine>> AddRoutine(int lampId, int routineId)
     {
         var routineDefinition = await _hub.RoutineDefinitions.GetAsync(routineId);

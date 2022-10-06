@@ -3,11 +3,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
+             xmlns:client="clr-namespace:Konek.Client"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Konek.Desktop.Views.LightControlView">
+
     <Design.DataContext>
         <viewModels:LightControlViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Name}"/>
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="client:Routine">
+            <TextBlock Text="{Binding Definition.Name}" />
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <StackPanel>
+        <TextBlock Text="{Binding Name}"
+                   Classes="h1"/>
+        <ListBox Items="{Binding Routines}"/>
+    </StackPanel>
 </UserControl>

@@ -16,7 +16,7 @@ public class GroupController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Group>> Get()
+    public async Task<IEnumerable<Group>> GetAll()
     {
         return await _hub.Groups.GetAllWithRoutinesAsync();
     }

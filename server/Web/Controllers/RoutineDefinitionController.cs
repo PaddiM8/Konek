@@ -16,7 +16,7 @@ public class RoutineDefinitionController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<RoutineDefinition>> Get()
+    public async Task<IEnumerable<RoutineDefinition>> GetAll()
     {
         return await _hub.RoutineDefinitions.GetAllAsync();
     }
