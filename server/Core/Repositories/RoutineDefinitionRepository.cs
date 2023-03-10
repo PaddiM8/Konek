@@ -1,5 +1,7 @@
+using System.Text.Json.Nodes;
 using Konek.Server.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Konek.Server.Core.Repositories;
 
@@ -9,6 +11,13 @@ public class RoutineDefinitionRepository : IRepository<RoutineDefinition>
     {
         await using var db = new DeviceContext();
         db.RoutineDefinitions.Add(routineDefinition);
+        await db.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(RoutineDefinition newValue)
+    {
+        await using var db = new DeviceContext();
+        db.RoutineDefinitions.Update(newValue);
         await db.SaveChangesAsync();
     }
 

@@ -21,6 +21,12 @@ public class RoutineDefinitionController : ControllerBase
         return await _hub.RoutineDefinitions.GetAllAsync();
     }
 
+    [HttpGet("{id:int}")]
+    public async Task<RoutineDefinition?> Get(int id)
+    {
+        return await _hub.RoutineDefinitions.GetAsync(id);
+    }
+
     [HttpPost]
     public async Task<ActionResult<RoutineDefinition>> Add(string name, [FromBody] ICollection<Effect> effects)
     {
@@ -28,5 +34,13 @@ public class RoutineDefinitionController : ControllerBase
         await _hub.RoutineDefinitions.AddAsync(routineDefinition);
 
         return routineDefinition;
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> Update([FromBody] RoutineDefinition newValue)
+    {
+        await _hub.RoutineDefinitions.UpdateAsync(newValue);
+
+        return Ok();
     }
 }

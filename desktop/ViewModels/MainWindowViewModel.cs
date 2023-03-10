@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using DynamicData;
 using Konek.Client;
+using Konek.Desktop.ViewModels.Entries;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 
@@ -12,6 +14,8 @@ namespace Konek.Desktop.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    public DashboardViewModel DashboardViewModel { get; } = new();
+
     private LightControlViewModel _lightControlViewModel = null!;
 
     public LightControlViewModel LightControlViewModel
@@ -20,13 +24,24 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _lightControlViewModel, value);
     }
 
-    public RoutineDefinitionViewModel RoutineDefinitionViewModel { get; }
+    private RoutineViewModel _routineViewModel = null!;
 
-    public ObservableCollection<Group> Groups { get; } = new();
+    public RoutineViewModel RoutineViewModel
+    {
+        get => _routineViewModel;
+        set => this.RaiseAndSetIfChanged(ref _routineViewModel, value);
+    }
 
-    public ObservableCollection<Lamp> Lamps { get; } = new();
+    public ObservableCollection<StaticPageEntry> StaticPages { get; } = new(new []
+    {
+        new StaticPageEntry("Dashboard", 0, IsSelected: true),
+    });
 
-    public ObservableCollection<RoutineDefinition> Routines { get; } = new();
+    public ObservableCollection<GroupEntry> Groups { get; } = new();
+
+    public ObservableCollection<LampEntry> Lamps { get; } = new();
+
+    public ObservableCollection<RoutineDefinitionEntry> Routines { get; } = new();
 
     public Interaction<AddLampViewModel, Lamp?> ShowAddLampDialog { get; } = new();
 
@@ -39,12 +54,6 @@ public class MainWindowViewModel : ViewModelBase
         get => _selectedView;
         set => this.RaiseAndSetIfChanged(ref _selectedView, value);
     }
-
-    public ICommand SelectGroupCommand { get; }
-
-    public ICommand SelectLampCommand { get; }
-
-    public ICommand SelectRoutineCommand { get; }
 
     public ICommand AddLampCommand { get; }
 
@@ -59,17 +68,12 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IRoutineDefinitionClient _routineDefinitionClient;
 
     public MainWindowViewModel(
-        RoutineDefinitionViewModel routineDefinitionViewModel,
         IGroupClient groupClient,
         ILampClient lampClient,
         IRoutineDefinitionClient routineDefinitionClient,
         IServiceProvider services
     )
     {
-        RoutineDefinitionViewModel = routineDefinitionViewModel;
-        SelectGroupCommand = ReactiveCommand.Create<Group>(SelectGroup);
-        SelectLampCommand = ReactiveCommand.Create<Lamp>(SelectLamp);
-        SelectRoutineCommand = ReactiveCommand.Create<Routine>(SelectRoutine);
         AddLampCommand = ReactiveCommand.CreateFromTask(async () =>
         {
             var lamp = await ShowAddLampDialog.Handle(
@@ -77,7 +81,7 @@ public class MainWindowViewModel : ViewModelBase
             );
 
             if (lamp != null)
-                Lamps.Add(lamp);
+                Lamps.Add(new LampEntry(lamp));
         });
         AddRoutineCommand = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -86,7 +90,7 @@ public class MainWindowViewModel : ViewModelBase
             );
 
             if (routineDefinition != null)
-                Routines.Add(routineDefinition);
+                Routines.Add(new RoutineDefinitionEntry(routineDefinition));
         });
 
         _services = services;
@@ -101,9 +105,10 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            Groups.AddRange(await _groupClient.GetAllAsync());
-            Lamps.AddRange(await _lampClient.GetAllAsync());
-            Routines.AddRange(await _routineDefinitionClient.GetAllAsync());
+            Groups.AddRange((await _groupClient.GetAllAsync()).Select(x => new GroupEntry(x)));
+            Lamps.AddRange((await _lampClient.GetAllAsync()).Select(x => new LampEntry(x)));
+            Routines.AddRange((await _routineDefinitionClient.GetAllAsync())
+                .Select(x => new RoutineDefinitionEntry(x)));
         }
         catch (Exception ex)
         {
@@ -111,20 +116,26 @@ public class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public void SelectStaticPage(StaticPageEntry staticPageEntry)
+    {
+        SelectedView = staticPageEntry.Index;
+    }
+
     public void SelectGroup(Group group)
     {
         LightControlViewModel = ActivatorUtilities.CreateInstance<LightControlViewModel>(_services, group.GroupId, group.Name);
-        SelectedView = 0;
+        SelectedView = StaticPages.Last().Index + 1;
     }
 
     public void SelectLamp(Lamp lamp)
     {
         LightControlViewModel = ActivatorUtilities.CreateInstance<LightControlViewModel>(_services, lamp.LampId, lamp.Name);
-        SelectedView = 0;
+        SelectedView = StaticPages.Last().Index + 1;
     }
 
-    public void SelectRoutine(Routine routine)
+    public void SelectRoutineDefinition(RoutineDefinition routineDefinition)
     {
-        SelectedView = 1;
+        RoutineViewModel = ActivatorUtilities.CreateInstance<RoutineViewModel>(_services, routineDefinition);
+        SelectedView = StaticPages.Last().Index + 2;
     }
 }

@@ -31,6 +31,11 @@ public class GroupRepository : IRepository<Group>
         await db.SaveChangesAsync();
     }
 
+    public async Task UpdateAsync(Group newValue)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task RemoveAsync(int id)
     {
         await using var db = new DeviceContext();

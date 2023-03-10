@@ -4,6 +4,8 @@ interface IRepository<T>
 {
     public Task AddAsync(T item);
 
+    public Task UpdateAsync(T newValue);
+
     public Task RemoveAsync(int id);
 
     public Task<T?> GetAsync(int id);

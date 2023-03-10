@@ -23,6 +23,11 @@ public class EffectRepository : IRepository<Effect>
         }
     }
 
+    public async Task UpdateAsync(Effect newValue)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Effect?> GetAsync(int id)
     {
         await using var db = new DeviceContext();

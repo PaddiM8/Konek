@@ -3,8 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
-        xmlns:client="clr-namespace:Konek.Client"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
         x:Class="Konek.Desktop.Views.AddRoutineDefinitionWindow"
         Classes="dialog"
         Title="AddRoutineDefinitionWindow">
@@ -13,27 +12,11 @@
             <viewModels:AddRoutineDefinitionViewModel/>
         </Design.DataContext>
 
-        <Window.DataTemplates>
-            <DataTemplate DataType="client:Effect">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding StartTime}"
-                               Margin="0 0 15 0"/>
-                    <TextBlock Text="{Binding EndTime}" />
-                </StackPanel>
-            </DataTemplate>
-        </Window.DataTemplates>
-
         <StackPanel>
                 <TextBlock Classes="h1"
                            Text="New Routine"/>
                 <TextBox Watermark="Routine name..."
                          Text="{Binding Name}"/>
-                <TextBlock Classes="h2"
-                           Text="Effects"/>
-                <Button Content="Add Effect"
-                        Command="{Binding AddEffectCommand}"/>
-                <ListBox Items="{Binding Effects}"
-                         Height="200" />
                 <Button Content="Cancel"
                         Click="Cancel_Click"/>
                 <Button Content="Add"

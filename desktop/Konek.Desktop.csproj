@@ -13,6 +13,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="../server/Web/obj/Konek.Client.g.cs" />
+        <Compile Update="Views\DashboardView.axaml.cs">
+          <DependentUpon>DashboardView.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
         <Content Include="config.json" Condition="Exists('config.json')">
@@ -52,5 +56,9 @@
         <DependentUpon>RoutineView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Controls\RoutineEditor.axaml" />
+      <UpToDateCheckInput Remove="Views\Controls\RoutineEditorView.axaml" />
     </ItemGroup>
 </Project>

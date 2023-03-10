@@ -2,7 +2,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
+             xmlns:client="clr-namespace:Konek.Client"
+             mc:Ignorable="d"
              x:Class="Konek.Desktop.Views.RoutineView">
-    Routine page
+
+    <Design.DataContext>
+        <viewModels:RoutineViewModel />
+    </Design.DataContext>
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="client:Effect">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding StartTime}"
+                           Margin="0 0 15 0" />
+                <TextBlock Text="{Binding EndTime}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <StackPanel HorizontalAlignment="Left">
+        <TextBlock Classes="h1"
+                   Text="Effects" />
+        <ListBox Items="{Binding Effects}"
+                 Width="400"
+                 Height="200" />
+        <Button Content="Add Effect"
+                Command="{Binding AddEffectCommand}" />
+        <Button Content="Update"
+                Command="{Binding UpdateEffectsCommand}" />
+    </StackPanel>
 </UserControl>

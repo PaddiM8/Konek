@@ -7,6 +7,8 @@
         <entry key="Konek.Desktop/Views/MainWindow.axaml" value="Konek.Desktop/Konek.Desktop.csproj" />
         <entry key="Konek.Desktop/Views/Sidebar.axaml" value="Konek.Desktop/Konek.Desktop.csproj" />
         <entry key="desktop/App.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Controls/EffectEditor.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Controls/RoutineEditor.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Pages/ControlPage.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Pages/RoutinePage.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Pages/RoutineView.axaml" value="desktop/Konek.Desktop.csproj" />
@@ -14,8 +16,11 @@
         <entry key="desktop/Views/AddLampWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/AddRoutineDefinitionWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/ControlView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Controls/RoutineEditorView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/DashboardView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/LightControlView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/MainWindow.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/RoutineView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Sidebar.axaml" value="desktop/Konek.Desktop.csproj" />
       </map>
     </option>

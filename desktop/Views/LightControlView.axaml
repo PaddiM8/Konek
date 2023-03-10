@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
              xmlns:client="clr-namespace:Konek.Client"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d"
              x:Class="Konek.Desktop.Views.LightControlView">
 
     <Design.DataContext>
@@ -13,7 +13,7 @@
 
     <UserControl.DataTemplates>
         <DataTemplate DataType="client:Routine">
-            <TextBlock Text="{Binding Definition.Name}" />
+            <TextBlock Text="{Binding Definition.Name}"/>
         </DataTemplate>
     </UserControl.DataTemplates>
 

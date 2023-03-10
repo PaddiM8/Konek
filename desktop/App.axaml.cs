@@ -15,6 +15,8 @@ namespace Konek.Desktop;
 
 public partial class App : Application
 {
+    public static MainWindow MainWindow { get; private set; } = null!;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -30,6 +32,7 @@ public partial class App : Application
             {
                 DataContext = services.GetRequiredService<MainWindowViewModel>(),
             };
+            MainWindow = (MainWindow)desktop.MainWindow;
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -48,7 +51,7 @@ public partial class App : Application
         var services = new ServiceCollection()
             .AddTransient<MainWindowViewModel>()
             .AddTransient<LightControlViewModel>()
-            .AddTransient<RoutineDefinitionViewModel>()
+            .AddTransient<RoutineViewModel>()
             .AddTransient<AddLampViewModel>()
             .AddSingleton(_ => config);
 

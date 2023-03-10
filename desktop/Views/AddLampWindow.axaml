@@ -4,35 +4,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
         xmlns:client="clr-namespace:Konek.Client"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
         x:Class="Konek.Desktop.Views.AddLampWindow"
         Title="AddLampWindow"
-        Classes="dialog"
-        Width="800">
+        Classes="dialog">
 
-        <Design.DataContext>
-            <viewModels:AddLampViewModel/>
-        </Design.DataContext>
+    <Design.DataContext>
+        <viewModels:AddLampViewModel />
+    </Design.DataContext>
 
-        <Window.DataTemplates>
-            <DataTemplate DataType="client:RemoteLamp">
-                <TextBlock Text="{Binding Name}" />
-            </DataTemplate>
-        </Window.DataTemplates>
+    <Window.DataTemplates>
+        <DataTemplate DataType="client:RemoteLamp">
+            <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+    </Window.DataTemplates>
 
-        <StackPanel>
-                <TextBlock Classes="h1"
-                           Text="New Lamp"/>
-                <TextBox Watermark="Lamp name..."
-                         Text="{Binding Name}"/>
-                <TextBlock Classes="h2"
-                           Text="Detected Lamps"/>
-                <ListBox Items="{Binding DetectedLamps}"
-                         SelectedIndex="{Binding SelectedLampIndex}"
-                         Height="200" />
-                <Button Content="Cancel"
-                        Click="Cancel_Click"/>
-                <Button Content="Add"
-                        Command="{Binding SubmitCommand}"/>
-        </StackPanel>
+    <StackPanel>
+        <TextBlock Classes="h1"
+                   Text="New Lamp" />
+        <TextBox Watermark="Lamp name..."
+                 Text="{Binding Name}" />
+        <TextBlock Classes="h2"
+                   Text="Detected Lamps" />
+        <ListBox Items="{Binding DetectedLamps}"
+                 SelectedIndex="{Binding SelectedLampIndex}"
+                 Height="200" />
+        <Button Content="Cancel"
+                Click="Cancel_Click" />
+        <Button Content="Add"
+                Command="{Binding SubmitCommand}" />
+    </StackPanel>
 </Window>

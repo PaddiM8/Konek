@@ -43,6 +43,11 @@ public class LampRepository : IRepository<Lamp>
         }
     }
 
+    public async Task UpdateAsync(Lamp newValue)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task RemoveAsync(int id)
     {
         await using var db = new DeviceContext();
