@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Konek.Desktop.Views"
-        xmlns:models="clr-namespace:Konek.Client"
         xmlns:entries="clr-namespace:Konek.Desktop.ViewModels.Entries"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Konek.Desktop.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Konek.Desktop"
+        Width="1200"
+        Height="750"
         WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>

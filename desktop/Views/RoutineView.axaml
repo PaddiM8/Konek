@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
              xmlns:client="clr-namespace:Konek.Client"
+             xmlns:controls="clr-namespace:Konek.Desktop.Views.Controls"
+             xmlns:routineBuilder="clr-namespace:Konek.Desktop.Views.Controls.RoutineBuilder"
              mc:Ignorable="d"
              x:Class="Konek.Desktop.Views.RoutineView">
 
@@ -24,9 +26,11 @@
     <StackPanel HorizontalAlignment="Left">
         <TextBlock Classes="h1"
                    Text="Effects" />
-        <ListBox Items="{Binding Effects}"
-                 Width="400"
-                 Height="200" />
+
+        <Panel MaxWidth="375">
+            <routineBuilder:RoutineBuilderControl Effects="{Binding Effects}" />
+        </Panel>
+
         <Button Content="Add Effect"
                 Command="{Binding AddEffectCommand}" />
         <Button Content="Update"

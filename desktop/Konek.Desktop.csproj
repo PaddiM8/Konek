@@ -17,6 +17,14 @@
           <DependentUpon>DashboardView.axaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Controls\RoutineBuilder\RoutineBuilderControl.axaml.cs">
+          <DependentUpon>RoutineBuilder.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Dialogs\EffectDialog.axaml.cs">
+          <DependentUpon>EffectDialog.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
         <Content Include="config.json" Condition="Exists('config.json')">
@@ -36,6 +44,7 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
+        <PackageReference Include="MessageBox.Avalonia" Version="2.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0-rc.1.22426.10" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-rc.1.22426.10" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />

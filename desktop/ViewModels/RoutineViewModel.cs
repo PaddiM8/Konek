@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ public class RoutineViewModel : ViewModelBase
 {
     public ObservableCollection<Effect> Effects { get; } = new();
 
-    public Interaction<AddEffectViewModel, Effect?> ShowAddEffectDialog { get; } = new();
+    public Interaction<EffectViewModel, Effect?> ShowAddEffectDialog { get; } = new();
 
     public ICommand AddEffectCommand { get; }
 
@@ -51,7 +52,7 @@ public class RoutineViewModel : ViewModelBase
         try
         {
             var effect = await ShowAddEffectDialog.Handle(
-                ActivatorUtilities.CreateInstance<AddEffectViewModel>(_services)
+                ActivatorUtilities.CreateInstance<EffectViewModel>(_services)
             );
 
             if (effect != null)

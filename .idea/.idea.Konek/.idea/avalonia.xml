@@ -16,6 +16,8 @@
         <entry key="desktop/Views/AddLampWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/AddRoutineDefinitionWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/ControlView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Controls/RoutineBuilder.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Controls/RoutineBuilderItem.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Controls/RoutineEditorView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/DashboardView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/LightControlView.axaml" value="desktop/Konek.Desktop.csproj" />

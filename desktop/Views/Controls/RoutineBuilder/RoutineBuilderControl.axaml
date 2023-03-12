@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:client="clr-namespace:Konek.Client"
+             xmlns:routineBuilder="clr-namespace:Konek.Desktop.Views.Controls.RoutineBuilder"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="50"
+             x:Class="Konek.Desktop.Views.Controls.RoutineBuilder.RoutineBuilderControl">
+
+    <UserControl.Resources>
+        <routineBuilder:EffectWidthConverter x:Key="EffectWidthConverter" />
+        <routineBuilder:EffectOffsetConverter x:Key="EffectOffsetConverter" />
+        <routineBuilder:TemperatureColorConverter x:Key="TemperatureColorConverter" />
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <Style Selector="Rectangle.inactive">
+            <Setter Property="Opacity" Value="0.35" />
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel>
+        <Viewbox Stretch="Fill"
+                 Height="50">
+            <ItemsControl Width="100"
+                          Height="50"
+                          Background="#e0e0e0"
+                          Name="EffectBlocks"
+                          Items="{Binding $parent[routineBuilder:RoutineBuilderControl].Effects}"
+                          PointerMoved="EffectBlocks_OnPointerMoved"
+                          PointerLeave="EffectBlocks_OnPointerLeave"
+                          PointerPressed="EffectBlocks_OnPointerPressed">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="client:Effect">
+                        <Rectangle Width="{Binding Path=., Converter={StaticResource EffectWidthConverter}}"
+                                   Height="50"
+                                   Tag="{Binding EffectId}">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                                    <LinearGradientBrush.GradientStops>
+                                        <!-- TODO: Also visualise brightness -->
+                                        <GradientStop Offset="0"
+                                                      Color="{Binding Temperature, Converter={StaticResource TemperatureColorConverter}}" />
+                                        <GradientStop Offset="1"
+                                                      Color="{Binding Temperature, Converter={StaticResource TemperatureColorConverter}}" />
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.Styles>
+                    <Style Selector="ContentPresenter">
+                        <Setter Property="Canvas.Top"
+                                Value="0" />
+                        <Setter Property="Canvas.Left"
+                                Value="{Binding Path=., Converter={StaticResource EffectOffsetConverter}}" />
+                    </Style>
+                </ItemsControl.Styles>
+            </ItemsControl>
+        </Viewbox>
+
+        <ItemsControl Items="{Binding $parent[routineBuilder:RoutineBuilderControl].SortedEffects}"
+                      Background="#eeeeee"
+                      Name="EffectList"
+                      PointerMoved="EffectList_OnPointerMoved"
+                      PointerLeave="EffectList_OnPointerLeave"
+                      PointerPressed="EffectList_OnPointerPressed">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="client:Effect">
+                    <Border Padding="10"
+                            Background="#eeeeee"
+                            BorderThickness="0 1 0 0"
+                            BorderBrush="Gray"
+                            Tag="{Binding EffectId}">
+                        <Grid ColumnDefinitions="*,*,*">
+                            <Grid.Styles>
+                                <Style Selector="TextBlock">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                </Style>
+                            </Grid.Styles>
+                            <TextBlock Text="{Binding StartTime}" Grid.Column="0" />
+                            <TextBlock Text="→" Grid.Column="1" />
+                            <TextBlock Text="{Binding EndTime}" Grid.Column="2" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

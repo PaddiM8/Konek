@@ -4,17 +4,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
         mc:Ignorable="d"
-        x:Class="Konek.Desktop.Views.AddEffectWindow"
+        x:Class="Konek.Desktop.Views.Dialogs.EffectDialog"
         Classes="dialog"
         Title="AddEffectWindow">
 
     <Design.DataContext>
-        <viewModels:AddEffectViewModel />
+        <viewModels:EffectViewModel />
     </Design.DataContext>
 
     <StackPanel>
         <TextBlock Classes="h1"
-                   Text="New Effect" />
+                   Text="{Binding Title}" />
         <TextBlock Classes="h2"
                    Text="Start Time" />
         <TextBox Text="{Binding StartTime}"
@@ -31,9 +31,12 @@
                    Text="Temperature" />
         <TextBox Text="{Binding Temperature}"
                  Watermark="255" />
+        <Button Content="Delete"
+                IsVisible="{Binding HasDelete}"
+                Command="{Binding DeleteCommand}" />
         <Button Content="Cancel"
                 Click="Cancel_Click" />
-        <Button Content="Add"
+        <Button Content="{Binding SubmitText}"
                 Command="{Binding SubmitCommand}" />
     </StackPanel>
 </Window>
