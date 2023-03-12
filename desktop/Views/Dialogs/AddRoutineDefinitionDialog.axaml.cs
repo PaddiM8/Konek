@@ -1,18 +1,16 @@
 using System;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
-using Konek.Client;
 using Konek.Desktop.ViewModels;
 using ReactiveUI;
 
-namespace Konek.Desktop.Views;
+namespace Konek.Desktop.Views.Dialogs;
 
-public partial class AddRoutineDefinitionWindow : ReactiveWindow<AddRoutineDefinitionViewModel>
+public partial class AddRoutineDefinitionDialog : ReactiveWindow<AddRoutineDefinitionViewModel>
 {
-    public AddRoutineDefinitionWindow()
+    public AddRoutineDefinitionDialog()
     {
         InitializeComponent();
         this.WhenActivated(d => d(ViewModel!.SubmitCommand.Subscribe(Close)));

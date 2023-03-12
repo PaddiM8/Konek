@@ -4,9 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
         mc:Ignorable="d"
-        x:Class="Konek.Desktop.Views.AddRoutineDefinitionWindow"
+        x:Class="Konek.Desktop.Views.Dialogs.AddRoutineDefinitionDialog"
         Classes="dialog"
-        Title="AddRoutineDefinitionWindow">
+        Title="AddRoutineDefinitionDialog">
 
         <Design.DataContext>
             <viewModels:AddRoutineDefinitionViewModel/>

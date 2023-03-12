@@ -6,11 +6,11 @@ using Avalonia.ReactiveUI;
 using Konek.Desktop.ViewModels;
 using ReactiveUI;
 
-namespace Konek.Desktop.Views;
+namespace Konek.Desktop.Views.Dialogs;
 
-public partial class AddLampWindow : ReactiveWindow<AddLampViewModel>
+public partial class AddLampDialog : ReactiveWindow<AddLampViewModel>
 {
-    public AddLampWindow()
+    public AddLampDialog()
     {
         InitializeComponent();
         this.WhenActivated(d => d(ViewModel!.SubmitCommand.Subscribe(Close)));

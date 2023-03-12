@@ -17,7 +17,7 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 
     private async Task DoShowAddLampDialogAsync(InteractionContext<AddLampViewModel, Lamp?> interaction)
     {
-        var dialog = new AddLampWindow
+        var dialog = new Dialogs.AddLampDialog
         {
             DataContext = interaction.Input,
         };
@@ -28,7 +28,7 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 
     private async Task DoShowAddRoutineDefinitionDialogAsync(InteractionContext<AddRoutineDefinitionViewModel, RoutineDefinition?> interaction)
     {
-        var dialog = new AddRoutineDefinitionWindow
+        var dialog = new Dialogs.AddRoutineDefinitionDialog
         {
             DataContext = interaction.Input,
         };

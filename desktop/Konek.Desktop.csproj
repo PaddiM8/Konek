@@ -25,6 +25,14 @@
           <DependentUpon>EffectDialog.axaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Dialogs\AddLampDialog.axaml.cs">
+          <DependentUpon>AddLampWindow.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Dialogs\AddRoutineDefinitionDialog.axaml.cs">
+          <DependentUpon>AddRoutineDefinitionWindow.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
         <Content Include="config.json" Condition="Exists('config.json')">

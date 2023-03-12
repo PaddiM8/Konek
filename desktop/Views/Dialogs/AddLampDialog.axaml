@@ -5,7 +5,7 @@
         xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
         xmlns:client="clr-namespace:Konek.Client"
         mc:Ignorable="d"
-        x:Class="Konek.Desktop.Views.AddLampWindow"
+        x:Class="Konek.Desktop.Views.Dialogs.AddLampDialog"
         Title="AddLampWindow"
         Classes="dialog">
 
