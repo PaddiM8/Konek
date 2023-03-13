@@ -27,9 +27,4 @@ public partial class RoutineView : ReactiveUserControl<RoutineViewModel>
         var result = await dialog.ShowDialog<DialogResult<Effect>>(App.MainWindow);
         interaction.SetOutput(result.Value);
     }
-
-    private void InitializeComponent()
-    {
-        AvaloniaXamlLoader.Load(this);
-    }
 }

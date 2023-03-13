@@ -27,8 +27,19 @@
             <Setter Property="Margin" Value="8" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style Selector="ItemsControl.navigationGroup">
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}" />
+        </Style>
+        <Style Selector="RadioButton.item">
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}" />
+            <Setter Property="Background" Value="{DynamicResource BackgroundSecondaryColor}" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="RadioButton.item:pointerover">
+            <Setter Property="Background" Value="{DynamicResource BackgroundSecondaryHoverColor}" />
+        </Style>
         <Style Selector="StackPanel.sidebar Button">
-            <Setter Property="Background" Value="transparent" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="FontSize" Value="24" />
             <Setter Property="Margin" Value="5 0" />
             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -77,9 +88,11 @@
     </Window.DataTemplates>
 
     <DockPanel>
-        <Border BorderBrush="#D3D3D3"
-                BorderThickness="0 0 1 0">
-            <StackPanel Classes="sidebar" Width="200">
+        <Border BorderBrush="{DynamicResource BorderColor}"
+                BorderThickness="0 0 1 0"
+                Background="{DynamicResource BackgroundSecondaryColor}">
+            <StackPanel Classes="sidebar"
+                        Width="200">
                 <StackPanel>
                     <ItemsControl Items="{Binding StaticPages}"
                                   Classes="navigationGroup" />
@@ -114,7 +127,7 @@
             </StackPanel>
         </Border>
         <Carousel SelectedIndex="{Binding SelectedView}"
-                  Padding="25">
+                  Padding="25 20 25 25">
             <views:DashboardView DataContext="{Binding DashboardViewModel}" />
             <views:LightControlView DataContext="{Binding LightControlViewModel}" />
             <views:RoutineView DataContext="{Binding RoutineViewModel}" />

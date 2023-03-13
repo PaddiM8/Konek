@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
+using Konek.Client;
 using Konek.Desktop.ViewModels;
 using ReactiveUI;
 
@@ -30,6 +31,6 @@ public partial class EffectDialog : ReactiveWindow<EffectViewModel>
 
     private void Cancel_Click(object? sender, RoutedEventArgs e)
     {
-        Close();
+        Close(new DialogResult<Effect>(null, DialogResultStatus.None));
     }
 }

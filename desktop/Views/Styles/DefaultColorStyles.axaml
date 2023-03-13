@@ -1,0 +1,29 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Styles.Resources>
+        <Brush x:Key="PrimaryColor">#3949AB</Brush>
+        <Brush x:Key="OnPrimaryColor">#FFFFFF</Brush>
+        <Brush x:Key="PrimaryHoverColor">#283593</Brush>
+        <Brush x:Key="PrimaryDisabledColor">#7986CB</Brush>
+        <Brush x:Key="OnPrimaryDisabledColor">#EEEEEE</Brush>
+
+        <Brush x:Key="BackgroundColor">#FAFAFA</Brush>
+        <Brush x:Key="BackgroundSecondaryColor">#EEEEEE</Brush>
+        <Brush x:Key="OnBackgroundSecondaryColor">#000000</Brush>
+        <Brush x:Key="BackgroundSecondaryHoverColor">#CFD8DC</Brush>
+
+        <Brush x:Key="ButtonColor">#E0E0E0</Brush>
+        <Brush x:Key="OnButtonColor">#000000</Brush>
+        <Brush x:Key="ButtonHoverColor">#B0BEC5</Brush>
+        <Brush x:Key="ButtonDisabledColor">#EEEEEE</Brush>
+        <Brush x:Key="OnButtonDisabledColor">#757575</Brush>
+
+        <Brush x:Key="DangerColor">#E53935</Brush>
+        <Brush x:Key="OnDangerColor">#FFFFFF</Brush>
+        <Brush x:Key="DangerHoverColor">#C62828</Brush>
+        <Brush x:Key="DangerDisabledColor">#E57373</Brush>
+        <Brush x:Key="OnDangerDisabledColor">#EEEEEE</Brush>
+
+        <Brush x:Key="BorderColor">#D5D5D5</Brush>
+    </Styles.Resources>
+</Styles>

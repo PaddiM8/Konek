@@ -22,15 +22,15 @@ namespace Konek.Desktop.Views.Controls.RoutineBuilder;
 
 public partial class RoutineBuilderControl : UserControl
 {
-    public static readonly DirectProperty<RoutineBuilderControl, IList<Effect>> EffectsProperty =
-        AvaloniaProperty.RegisterDirect<RoutineBuilderControl, IList<Effect>>(
+    public static readonly DirectProperty<RoutineBuilderControl, ObservableCollection<Effect>> EffectsProperty =
+        AvaloniaProperty.RegisterDirect<RoutineBuilderControl, ObservableCollection<Effect>>(
             nameof(Effects),
             o => o.Effects,
             (o, v) => o.Effects = v);
 
-    private IList<Effect> _effects = new AvaloniaList<Effect>();
+    private ObservableCollection<Effect> _effects = new();
 
-    public IList<Effect> Effects
+    public ObservableCollection<Effect> Effects
     {
         get => _effects;
         set
@@ -38,7 +38,12 @@ public partial class RoutineBuilderControl : UserControl
             SetAndRaise(EffectsProperty, ref _effects, value);
             // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             if (value != null)
+            {
                 _sourceCache.AddOrUpdate(value);
+
+                value.CollectionChanged += (_, _) =>
+                    _sourceCache.AddOrUpdate(value);
+            }
         }
     }
 
@@ -73,7 +78,7 @@ public partial class RoutineBuilderControl : UserControl
         if (result.Status == DialogResultStatus.Delete)
             Effects.Remove(effectToEdit);
 
-        EffectList.Items = Effects;
+        EffectList.Items = SortedEffects;
         EffectBlocks.Items = Effects;
     }
 
@@ -118,7 +123,7 @@ public partial class RoutineBuilderControl : UserControl
             return;
         }
 
-        var effects = EffectBlocks.Items.Cast<Effect>();
+        var effects = EffectBlocks.Items!.Cast<Effect>();
         var blocks = FindControlChildren(EffectBlocks);
         var listItems = FindControlChildren(EffectList);
         foreach (var (effect, block, listItem) in effects.Zip(blocks, listItems))

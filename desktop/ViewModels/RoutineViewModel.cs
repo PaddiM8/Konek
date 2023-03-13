@@ -37,7 +37,7 @@ public class RoutineViewModel : ViewModelBase
 
         AddEffectCommand = ReactiveCommand.CreateFromTask(AddEffect);
         UpdateEffectsCommand = ReactiveCommand.CreateFromTask(UpdateEffects);
-        RxApp.TaskpoolScheduler.Schedule(Load);
+        RxApp.MainThreadScheduler.Schedule(Load);
     }
 
     private async void Load()

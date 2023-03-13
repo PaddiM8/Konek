@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Konek.Desktop.ViewModels"
              xmlns:client="clr-namespace:Konek.Client"
-             xmlns:controls="clr-namespace:Konek.Desktop.Views.Controls"
              xmlns:routineBuilder="clr-namespace:Konek.Desktop.Views.Controls.RoutineBuilder"
              mc:Ignorable="d"
              x:Class="Konek.Desktop.Views.RoutineView">
@@ -24,16 +23,27 @@
     </UserControl.DataTemplates>
 
     <StackPanel HorizontalAlignment="Left">
-        <TextBlock Classes="h1"
-                   Text="Effects" />
+        <Grid>
+            <TextBlock Classes="h1"
+                       HorizontalAlignment="Left"
+                       Text="Effects" />
+            <Button Content="Add Effect"
+                    Margin="0 0 0 10"
+                    HorizontalAlignment="Right"
+                    Command="{Binding AddEffectCommand}" />
+        </Grid>
 
-        <Panel MaxWidth="375">
+        <StackPanel MaxWidth="375" Spacing="{DynamicResource Spacing}">
             <routineBuilder:RoutineBuilderControl Effects="{Binding Effects}" />
-        </Panel>
 
-        <Button Content="Add Effect"
-                Command="{Binding AddEffectCommand}" />
-        <Button Content="Update"
-                Command="{Binding UpdateEffectsCommand}" />
+            <StackPanel HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="{DynamicResource Spacing}">
+                <Button Content="Revert" />
+                <Button Content="Update"
+                        Classes="primary"
+                        Command="{Binding UpdateEffectsCommand}" />
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
