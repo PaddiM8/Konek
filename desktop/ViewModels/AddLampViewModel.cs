@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using DynamicData;
-using DynamicData.Binding;
 using Konek.Client;
 using ReactiveUI;
 
@@ -32,7 +27,7 @@ public class AddLampViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _selectedLampIndex, value);
     }
 
-    public ReactiveCommand<Unit, Lamp?> SubmitCommand { get; }
+    public ReactiveCommand<Unit, Lamp> SubmitCommand { get; }
 
     private readonly IHubClient _hubClient;
 
@@ -54,7 +49,7 @@ public class AddLampViewModel : ViewModelBase
         }
     }
 
-    private async Task<Lamp?> Submit()
+    private async Task<Lamp> Submit()
     {
         return await _lampClient.AddAsync(Name, DetectedLamps[SelectedLampIndex].Id);
     }

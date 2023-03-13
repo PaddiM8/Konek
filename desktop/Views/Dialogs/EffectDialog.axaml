@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         x:Class="Konek.Desktop.Views.Dialogs.EffectDialog"
         Classes="dialog"
-        Title="AddEffectWindow">
+        Title="AddEffectDialog">
 
     <Design.DataContext>
         <viewModels:EffectViewModel />

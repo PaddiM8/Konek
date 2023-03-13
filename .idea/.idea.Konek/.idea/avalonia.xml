@@ -17,13 +17,20 @@
         <entry key="desktop/Views/AddRoutineDefinitionWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/ControlView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Controls/RoutineBuilder.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Controls/RoutineBuilder/RoutineBuilderControl.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Controls/RoutineBuilderItem.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Controls/RoutineEditorView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/DashboardView.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Dialogs/AddLampDialog.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Dialogs/AddRoutineDefinitionWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/LightControlView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/MainWindow.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/RoutineView.axaml" value="desktop/Konek.Desktop.csproj" />
         <entry key="desktop/Views/Sidebar.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Styles/ButtonStyles.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Styles/Default.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Styles/ResourceDictionary.axaml" value="desktop/Konek.Desktop.csproj" />
+        <entry key="desktop/Views/Templates/ButtonControl.axaml" value="desktop/Konek.Desktop.csproj" />
       </map>
     </option>
   </component>

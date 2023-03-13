@@ -6,7 +6,7 @@
         xmlns:client="clr-namespace:Konek.Client"
         mc:Ignorable="d"
         x:Class="Konek.Desktop.Views.Dialogs.AddLampDialog"
-        Title="AddLampWindow"
+        Title="AddLampDialog"
         Classes="dialog">
 
     <Design.DataContext>
